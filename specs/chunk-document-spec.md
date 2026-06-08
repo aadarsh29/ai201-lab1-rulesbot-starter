@@ -116,11 +116,11 @@ handle these cases better, at the cost of more implementation complexity.
 **Actual chunk count produced across all 8 rule books:**
 
 ```
-[your answer here]
+149
 ```
 
 **One thing that surprised you or didn't match your expectations:**
 
 ```
-[your answer here]
+If all of these are valid rules then this comes out to less than 20 rules on average per game, which doesn't sound right. It's too little especially for games like monopoly.
 ```

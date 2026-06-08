@@ -42,7 +42,7 @@ Returns a fallback string (not an error) when `retrieved_chunks` is empty.
 *How will you format the retrieved chunks before passing them to the LLM? Describe the structure — not the code. Consider: will you label chunks by game? Include distance scores? Separate chunks with delimiters?*
 
 ```
-[your answer here]
+I'll provide the instructions it cannot differ from first, then I'll provide the game name and how high up the chunk showed up in the retrieval - chunk 1 - pandemic, chunk 2 - pandemic etc. Then provide the actual question that they have to answer.
 ```
 
 ---
@@ -52,7 +52,7 @@ Returns a fallback string (not an error) when `retrieved_chunks` is empty.
 *Write the exact system prompt instruction you will use to prevent the model from answering beyond the retrieved text. This is the most important design decision in this function.*
 
 ```
-[your answer here]
+You're given all the relevant context in this prompt. Do not rely on outside information to answer the question the user provided, all the information you are provided is all you can use to present your answer. If you cannot answer the question with the information above, say you do not have enough information to answer this question. 
 ```
 
 ---

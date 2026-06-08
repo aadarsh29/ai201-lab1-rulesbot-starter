@@ -45,7 +45,7 @@ Results should be ordered from most to least relevant (lowest to highest distanc
 *Describe how you will use `_collection.query()` to find relevant chunks. What arguments will you pass, and why?*
 
 ```
-[your answer here]
+The question itself, what to include, the max no of chunks to return. These are the three inputs to the function.
 ```
 
 ---
@@ -55,7 +55,7 @@ Results should be ordered from most to least relevant (lowest to highest distanc
 *Sketch out what one item in your return list looks like as a concrete example. Where does each field come from in the query results?*
 
 ```
-[your answer here]
+For example: ["If you roll a seven, skip", "Monopoly", 0.01]. Here, "If you roll a seven, skip" comes from the actual chunk text, the name of the game comes from the game_name and the similarity score from chromadb vector db.
 ```
 
 ---
@@ -65,7 +65,7 @@ Results should be ordered from most to least relevant (lowest to highest distanc
 *`_collection.query()` returns nested lists. Describe what index you need to access to get the actual list of results for a single query, and why the nesting exists.*
 
 ```
-[your answer here]
+You'll have to access the zeroth index to get the full list. 
 ```
 
 ---
@@ -75,7 +75,7 @@ Results should be ordered from most to least relevant (lowest to highest distanc
 *Will you filter out results above a certain distance score, or return all `n_results` regardless of how relevant they are? What are the tradeoffs of each approach?*
 
 ```
-[your answer here]
+I'll filter out results above a distance score of 0.5. If I do so I risk losing chunks that may be more relevant than they seem to the model, but if the similarity score is off that much, I'll take that risk.
 ```
 
 ---
@@ -97,14 +97,14 @@ Results should be ordered from most to least relevant (lowest to highest distanc
 **Test query and top result returned:**
 
 ```
-Query: [your test query]
-Top result game: [game name]
-Distance score: [score]
-Does it make sense? [yes / no / explain]
+Query: [your test query] What happens if you roll a 7 in Catan?
+Top result game: [game name] Catan
+Distance score: [score] 0.4475
+Does it make sense? [yes / no / explain] Yes
 ```
 
 **One thing about the query results that surprised you:**
 
 ```
-[your answer here]
+I didn't expect distance scores this high to be returned, i expected them to be closer to 0.1 or 0.2.
 ```

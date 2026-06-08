@@ -43,8 +43,8 @@ def chunk_document(text, game_name):
       - "chunk_id" : a unique identifier, e.g. "catan_0", "catan_1" (str)
     """
     chunk_size = 300
-    overlap = 50
-    min_length = 50
+    overlap = 75
+    min_length = 75
 
     chunks = []
     prefix = game_name.lower().replace(" ", "_")

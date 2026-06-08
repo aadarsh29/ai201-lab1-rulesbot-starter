@@ -38,6 +38,7 @@ def embed_and_store(chunks):
     You don't generate embeddings manually here — you hand over the text
     and ChromaDB handles the vector math.
     """
+    _collection.delete(where={"game": {"$ne": ""}})
     _collection.add(
         documents=[c["text"] for c in chunks],
         metadatas=[{"game": c["game"]} for c in chunks],
@@ -69,4 +70,30 @@ def retrieve(query, n_results=N_RESULTS):
         return []
 
     # Your implementation here.
-    return []
+    results = _collection.query(
+        query_texts=[query],
+        n_results=n_results,
+        include=["documents", "metadatas", "distances"]
+    )
+
+    # TEMPORARY DEBUG — remove before final submission
+    print(f"Query: {query}")
+    print(f"Number of results: {len(results['documents'][0])}")
+    for i, (doc, meta, dist) in enumerate(zip(results["documents"][0], results["metadatas"][0], results["distances"][0])):
+        print(f"\n--- Result {i+1} ---")
+        print(f"Game: {meta['game']}")
+        print(f"Distance: {dist:.4f}")
+        print(f"Text preview: {doc[:150]}...")
+
+    documents = results["documents"][0]
+    metadatas = results["metadatas"][0]
+    distances = results["distances"][0]
+
+    return [
+        {
+            "text": doc,
+            "game": meta["game"],
+            "distance": dist
+        }
+        for doc, meta, dist in zip(documents, metadatas, distances)
+    ]
